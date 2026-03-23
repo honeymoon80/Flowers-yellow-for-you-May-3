@@ -6,12 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
     <title>FLORES PROTEGIDAS</title>
-
-    <!-- Si tienes css/main.css con las animaciones de flores, mantenlo. Si no funciona, este código ya incluye lo básico -->
     <link rel="stylesheet" href="css/main.css">
-
     <style>
-        /* Estilos adicionales para asegurar que todo se vea bien */
         .particles {
             position: fixed;
             top: 0; left: 0;
@@ -69,7 +65,7 @@
     <div class="particles" id="particles"></div>
 
     <div class="flowers">
-      <!-- ESTRUCTURA COMPLETA DE FLORES (exacta a la que me enviaste) -->
+      <!-- Todas las flores completas -->
       <div class="flower flower--1"><div class="flower__leafs flower__leafs--1"><div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div><div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div></div><div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div><div class="flower__line__leaf flower__line__leaf--5"></div><div class="flower__line__leaf flower__line__leaf--6"></div></div></div>
       <div class="flower flower--2"><div class="flower__leafs flower__leafs--2"><div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div><div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div></div><div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div></div></div>
       <div class="flower flower--3"><div class="flower__leafs flower__leafs--3"><div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div><div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div></div><div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div></div></div>
@@ -99,14 +95,14 @@
 
     <script>
         window.addEventListener('load', function() {
+            // Música - fuerza reproducción después de interacción
             const music = document.getElementById('background-music');
             music.play().catch(() => {
-                // Si no reproduce automáticamente, pide un clic
                 document.body.addEventListener('click', () => music.play(), {once: true});
             });
 
-            setTimeout(startParticles, 2500);
-            setTimeout(startEffectsSequence, 7000);
+            setTimeout(startParticles, 2000);
+            setTimeout(startEffectsSequence, 6500);
         });
 
         // Partículas amarillas
@@ -152,4 +148,4 @@
         }
     </script>
 </body>
-</html>
+        </html>
