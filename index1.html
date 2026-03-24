@@ -7,25 +7,36 @@
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
     <title>FLORES PROTEGIDAS</title>
     <link rel="stylesheet" href="css/main.css">
+
     <style>
-        .particles { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:10; overflow:hidden; }
+        .particles {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 10; overflow: hidden;
+        }
         .particle {
-            position:absolute; width:5px; height:5px; background:#ffff00; border-radius:50%;
-            box-shadow:0 0 12px #ffff00; animation:fall linear infinite;
+            position: absolute; width: 5px; height: 5px; background: #ffff00;
+            border-radius: 50%; box-shadow: 0 0 12px #ffff00;
+            animation: fall linear infinite;
         }
-        @keyframes fall { to { transform:translateY(110vh) translateX(40px); } }
+        @keyframes fall { to { transform: translateY(110vh) translateX(40px); } }
 
-        .aura-text, .final-message {
-            position:fixed; top:12%; left:50%; transform:translateX(-50%);
-            font-family:'Courier New', monospace; font-size:2rem; line-height:1.5;
-            text-align:center; max-width:92%; white-space:pre-line; z-index:25;
+        .aura-text {
+            position: fixed; top: 12%; left: 50%; transform: translateX(-50%);
+            font-family: 'Courier New', monospace; font-size: 2rem; color: #8a2be2;
+            text-shadow: 0 0 20px #8a2be2; text-align: center; z-index: 25;
+            max-width: 90%; white-space: pre-line; opacity: 0;
         }
-        .aura-text { color:#8a2be2; text-shadow:0 0 20px #8a2be2; opacity:0; }
-        .aura-text.active { opacity:1; animation:glitch 0.4s infinite; }
-        @keyframes glitch { 50% { text-shadow:3px 0 20px #ff00ff, -3px 0 20px #00ffff; } }
+        .aura-text.active { opacity: 1; animation: glitch 0.4s infinite; }
+        @keyframes glitch { 50% { text-shadow: 3px 0 20px #ff00ff, -3px 0 20px #00ffff; } }
 
-        .final-message { color:red; text-shadow:0 0 30px red, 0 0 60px red; opacity:0; background:rgba(0,0,0,0.7); padding:20px 30px; border-radius:15px; }
-        .final-message.active { opacity:1; }
+        .final-message {
+            position: fixed; top: 12%; left: 50%; transform: translateX(-50%);
+            font-family: 'Courier New', monospace; font-size: 2rem; line-height: 1.5;
+            color: red; text-shadow: 0 0 30px red, 0 0 60px red; text-align: center;
+            max-width: 88%; background: rgba(0,0,0,0.75); padding: 25px 35px;
+            border-radius: 15px; z-index: 30; opacity: 0; transition: opacity 1.8s ease;
+        }
+        .final-message.active { opacity: 1; }
     </style>
 </head>
 <body class="container">
@@ -33,60 +44,114 @@
     <div class="night"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Solo tu texto en el efecto hacker -->
+    <!-- Efecto hacker con TU texto -->
     <div class="aura-text" id="aura-text"></div>
 
-    <!-- Texto rojo final (mismo lugar) -->
+    <!-- Texto rojo final (mismo lugar, no ocupa toda la pantalla) -->
     <div class="final-message" id="final-message">
         floresh tan dichosas y afortunadas de ser el bello regalito<br>
         de tan bella mujelshita de toditash mi fantasías y deseitos de miel🫶💗🌸
     </div>
 
     <div class="flowers">
-        <!-- Las flores completas del repositorio que funciona (mantengo la estructura original) -->
-        <div class="flower flower--1">...</div> <!-- Aquí van todas tus flores originales del css/main.css -->
-        <!-- (No las escribo completas aquí porque son muy largas, pero en tu css/main.css ya están definidas correctamente. Si necesitas que te las incluya, dime) -->
+        <!-- Estructura completa de flores (copiada del repositorio que sí funciona) -->
+        <div class="flower flower--1">
+            <div class="flower__leafs flower__leafs--1">
+                <div class="flower__leaf flower__leaf--1"></div>
+                <div class="flower__leaf flower__leaf--2"></div>
+                <div class="flower__leaf flower__leaf--3"></div>
+                <div class="flower__leaf flower__leaf--4"></div>
+                <div class="flower__white-circle"></div>
+            </div>
+            <div class="flower__line">
+                <div class="flower__line__leaf flower__line__leaf--1"></div>
+                <div class="flower__line__leaf flower__line__leaf--2"></div>
+            </div>
+        </div>
+
+        <div class="flower flower--2">
+            <div class="flower__leafs flower__leafs--2">
+                <div class="flower__leaf flower__leaf--1"></div>
+                <div class="flower__leaf flower__leaf--2"></div>
+                <div class="flower__leaf flower__leaf--3"></div>
+                <div class="flower__leaf flower__leaf--4"></div>
+                <div class="flower__white-circle"></div>
+            </div>
+            <div class="flower__line">
+                <div class="flower__line__leaf flower__line__leaf--1"></div>
+                <div class="flower__line__leaf flower__line__leaf--2"></div>
+            </div>
+        </div>
+
+        <div class="flower flower--3">
+            <div class="flower__leafs flower__leafs--3">
+                <div class="flower__leaf flower__leaf--1"></div>
+                <div class="flower__leaf flower__leaf--2"></div>
+                <div class="flower__leaf flower__leaf--3"></div>
+                <div class="flower__leaf flower__leaf--4"></div>
+                <div class="flower__white-circle"></div>
+            </div>
+            <div class="flower__line">
+                <div class="flower__line__leaf flower__line__leaf--1"></div>
+                <div class="flower__line__leaf flower__line__leaf--2"></div>
+            </div>
+        </div>
+
+        <div class="grow-ans" style="--d:1.2s"><div class="flower__g-long"></div></div>
+        <div class="growing-grass"></div>
     </div>
 
-    <!-- Audio -->
+    <!-- Audio corregido -->
     <audio id="loveAudio" loop>
-        <source src="audio/audio.mp3" type="audio/mpeg">
+        <source src="audio.mp3" type="audio/mpeg">
     </audio>
 
     <script>
+        // Partículas
         function createParticles() {
-            const cont = document.getElementById('particles');
-            for(let i=0; i<85; i++){
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 85; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
-                p.style.left = Math.random()*100 + '%';
-                p.style.animationDuration = (Math.random()*8 + 7) + 's';
-                p.style.animationDelay = Math.random()*4 + 's';
-                cont.appendChild(p);
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (Math.random() * 8 + 7) + 's';
+                p.style.animationDelay = Math.random() * 4 + 's';
+                container.appendChild(p);
             }
         }
 
-        function typeWriter(el, text, speed=65) {
-            let i=0; el.innerHTML=''; el.classList.add('active');
-            const int = setInterval(() => {
-                if(i < text.length) { el.innerHTML += text.charAt(i); i++; }
-                else clearInterval(int);
+        // Efecto hacker
+        function typeWriter(element, text, speed = 68) {
+            let i = 0;
+            element.innerHTML = '';
+            element.classList.add('active');
+            const interval = setInterval(() => {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                } else clearInterval(interval);
             }, speed);
         }
 
         window.onload = () => {
             createParticles();
+
             const audio = document.getElementById('loveAudio');
             const aura = document.getElementById('aura-text');
             const finalMsg = document.getElementById('final-message');
 
             const tuTexto = "floresh tan dichosas y afortunadas de ser el bello regalito de tan bella mujelshita de toditash mi fantasías y deseitos de miel🫶💗🌸";
 
+            // Intentar reproducir audio
             audio.play().catch(() => {
-                document.body.addEventListener('click', () => audio.play(), {once:true});
+                document.body.addEventListener('click', () => audio.play(), { once: true });
+                document.body.addEventListener('touchstart', () => audio.play(), { once: true });
             });
 
-            setTimeout(() => typeWriter(aura, tuTexto, 68), 6800);
+            // Secuencia
+            setTimeout(() => {
+                typeWriter(aura, tuTexto, 68);
+            }, 6500);
 
             setTimeout(() => {
                 aura.style.opacity = '0';
