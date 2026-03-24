@@ -6,74 +6,57 @@
     <title>FLORES PROTEGIDAS</title>
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
 
-    <!-- CSS principal de las flores (incluido aquí para que funcione seguro) -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
 
-        body, html {
-            margin: 0; padding: 0; overflow: hidden;
-            background: #000;
-            height: 100vh;
-            font-family: 'Courier Prime', monospace;
-        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body, html { height:100vh; overflow:hidden; background:#000; font-family:'Courier Prime', monospace; }
 
-        .night {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, #0a001f, #1a0033);
-            z-index: 1;
-        }
+        .night { position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(#0a001f, #1a0033); z-index:1; }
 
         .particles {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 5; overflow: hidden;
+            position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:5; overflow:hidden;
         }
         .particle {
-            position: absolute;
-            width: 5px; height: 5px;
-            background: #ff0;
-            border-radius: 50%;
-            box-shadow: 0 0 12px #ff0;
-            animation: fall linear infinite;
+            position:absolute; width:5px; height:5px; background:#ff0; border-radius:50%;
+            box-shadow:0 0 12px #ff0; animation:fall linear infinite;
         }
-        @keyframes fall {
-            to { transform: translateY(110vh) translateX(40px); }
+        @keyframes fall { to { transform:translateY(110vh) translateX(40px); } }
+
+        /* Flores creciendo correctamente */
+        .flowers { position:relative; z-index:10; height:100vh; }
+        .flower {
+            position:absolute; bottom:-60px; left:50%; transform:translateX(-50%) scale(0.15);
+            animation: flowerGrow 13s forwards ease-out;
         }
-
-        /* === ANIMACIONES DE FLORES (esto era lo que faltaba) === */
-        .flowers { position: relative; z-index: 10; height: 100vh; }
-        .flower { position: absolute; bottom: -20px; animation: grow 12s forwards; }
-        .flower--1 { left: 15%; }
-        .flower--2 { left: 45%; animation-delay: 1.5s; }
-        .flower--3 { left: 70%; animation-delay: 3s; }
-
-        @keyframes grow {
-            0%   { transform: scale(0.1) translateY(100px); opacity: 0; }
-            100% { transform: scale(1) translateY(0); opacity: 1; }
+        @keyframes flowerGrow {
+            0%   { transform:translateX(-50%) scale(0.15) translateY(120px); opacity:0; }
+            100% { transform:translateX(-50%) scale(1) translateY(0); opacity:1; }
         }
+        .flower--1 { left:18%; animation-delay:0.8s; }
+        .flower--2 { left:50%; animation-delay:2.2s; }
+        .flower--3 { left:80%; animation-delay:3.8s; }
 
-        /* Clases originales de tus flores (resumidas pero completas) */
-        .flower__leafs, .flower__line, .grow-ans, .growing-grass { animation: grow-ans 12s forwards; }
-        @keyframes grow-ans {
-            from { transform: scale(0.1); }
-            to   { transform: scale(1); }
+        /* Texto hacker y final */
+        .aura-text, .final-message {
+            position:fixed; top:15%; left:50%; transform:translateX(-50%);
+            font-size:1.9rem; line-height:1.45; text-align:center; z-index:20;
+            max-width:92%; white-space:pre-line;
         }
-
-        /* Texto hacker */
         .aura-text {
-            position: fixed; top: 12%; left: 50%; transform: translateX(-50%);
-            font-size: 2.1rem; color: #8a2be2; text-shadow: 0 0 20px #8a2be2;
-            text-align: center; z-index: 20; opacity: 0; white-space: pre-line;
+            color:#8a2be2; text-shadow:0 0 20px #8a2be2; opacity:0;
         }
-        .aura-text.active { opacity: 1; animation: glitch 0.4s infinite; }
+        .aura-text.active { opacity:1; animation:glitch 0.35s infinite; }
+        @keyframes glitch {
+            0%,100% { text-shadow:0 0 20px #8a2be2; }
+            50% { text-shadow:3px 0 20px #ff00ff, -3px 0 20px #00ffff; }
+        }
 
-        /* Mensaje final */
         .final-message {
-            position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 2rem; line-height: 1.4; color: #ff3366; text-align: center;
-            max-width: 90%; background: rgba(0,0,0,0.7); padding: 25px 35px;
-            border-radius: 20px; z-index: 30; opacity: 0; transition: 1.8s;
+            color:#ff3366; text-shadow:0 0 25px #ff3366; background:rgba(0,0,0,0.75);
+            padding:25px 35px; border-radius:18px; opacity:0; transition:opacity 1.8s ease;
         }
-        .final-message.active { opacity: 1; }
+        .final-message.active { opacity:1; }
     </style>
 </head>
 <body>
@@ -81,10 +64,10 @@
     <div class="night"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Texto hacker -->
+    <!-- Efecto hacker -->
     <div class="aura-text" id="aura-text"></div>
 
-    <!-- Mensaje final con tu texto -->
+    <!-- Texto rojo final (mismo lugar) -->
     <div class="final-message" id="final-message">
         floresh tan dichosas y afortunadas de ser el bello regalito<br>
         de tan bella mujelshita de toditash mi fantasías y deseitos de miel🫶💗🌸
@@ -93,93 +76,92 @@
     <div class="flowers">
         <!-- Flor 1 -->
         <div class="flower flower--1">
-            <div class="flower__leafs flower__leafs--1">
-                <div class="flower__leaf flower__leaf--1"></div>
-                <div class="flower__leaf flower__leaf--2"></div>
-                <div class="flower__leaf flower__leaf--3"></div>
-                <div class="flower__leaf flower__leaf--4"></div>
+            <div class="flower__leafs">
+                <div class="flower__leaf"></div><div class="flower__leaf"></div>
+                <div class="flower__leaf"></div><div class="flower__leaf"></div>
                 <div class="flower__white-circle"></div>
             </div>
             <div class="flower__line"></div>
         </div>
-
         <!-- Flor 2 -->
         <div class="flower flower--2">
-            <div class="flower__leafs flower__leafs--2">
-                <div class="flower__leaf flower__leaf--1"></div>
-                <div class="flower__leaf flower__leaf--2"></div>
-                <div class="flower__leaf flower__leaf--3"></div>
-                <div class="flower__leaf flower__leaf--4"></div>
+            <div class="flower__leafs">
+                <div class="flower__leaf"></div><div class="flower__leaf"></div>
+                <div class="flower__leaf"></div><div class="flower__leaf"></div>
                 <div class="flower__white-circle"></div>
             </div>
             <div class="flower__line"></div>
         </div>
-
         <!-- Flor 3 -->
         <div class="flower flower--3">
-            <div class="flower__leafs flower__leafs--3">
-                <div class="flower__leaf flower__leaf--1"></div>
-                <div class="flower__leaf flower__leaf--2"></div>
-                <div class="flower__leaf flower__leaf--3"></div>
-                <div class="flower__leaf flower__leaf--4"></div>
+            <div class="flower__leafs">
+                <div class="flower__leaf"></div><div class="flower__leaf"></div>
+                <div class="flower__leaf"></div><div class="flower__leaf"></div>
                 <div class="flower__white-circle"></div>
             </div>
             <div class="flower__line"></div>
         </div>
-
-        <div class="grow-ans" style="animation-delay: 2s;">
-            <div class="flower__g-long"></div>
-        </div>
-
-        <div class="growing-grass"></div>
     </div>
+
+    <!-- AUDIO CORREGIDO -->
+    <audio id="loveAudio" loop autoplay>
+        <source src="audio/audio.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         // Partículas amarillas
         function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 90; i++) {
+            const cont = document.getElementById('particles');
+            for(let i = 0; i < 90; i++){
                 const p = document.createElement('div');
                 p.className = 'particle';
-                p.style.left = Math.random() * 100 + '%';
-                p.style.animationDuration = (Math.random() * 7 + 8) + 's';
-                p.style.animationDelay = Math.random() * 4 + 's';
-                p.style.opacity = Math.random() * 0.6 + 0.4;
-                container.appendChild(p);
+                p.style.left = Math.random()*100 + '%';
+                p.style.animationDuration = (Math.random()*8 + 9) + 's';
+                p.style.animationDelay = Math.random()*5 + 's';
+                cont.appendChild(p);
             }
         }
 
         // Efecto máquina de escribir
-        function typeWriter(el, text, speed = 65) {
+        function typeWriter(el, text, speed = 68) {
             let i = 0;
             el.innerHTML = '';
             el.classList.add('active');
-            const timer = setInterval(() => {
+            const interval = setInterval(() => {
                 if (i < text.length) {
                     el.innerHTML += text.charAt(i);
                     i++;
                 } else {
-                    clearInterval(timer);
+                    clearInterval(interval);
                 }
             }, speed);
         }
 
-        // Secuencia principal
         window.onload = () => {
             createParticles();
 
+            const audio = document.getElementById('loveAudio');
             const aura = document.getElementById('aura-text');
             const finalMsg = document.getElementById('final-message');
 
-            // Hacker text después de 7 segundos
-            setTimeout(() => {
-                typeWriter(aura, "MI FLOR AMARILLA...\nTE ESPERABA DESDE HACE TIEMPO");
-            }, 7000);
+            const tuTexto = "floresh tan dichosas y afortunadas de ser el bello regalito de tan bella mujelshita de toditash mi fantasías y deseitos de miel🫶💗🌸";
 
-            // Mensaje final después de 14 segundos
+            // Reproducir audio
+            audio.play().catch(() => {
+                document.body.addEventListener('touchstart', () => audio.play(), {once: true});
+                document.body.addEventListener('click', () => audio.play(), {once: true});
+            });
+
+            // Secuencia
             setTimeout(() => {
+                typeWriter(aura, tuTexto, 68);
+            }, 6500);
+
+            setTimeout(() => {
+                aura.style.transition = 'opacity 1.2s';
+                aura.style.opacity = '0';
                 finalMsg.classList.add('active');
-            }, 14000);
+            }, 19200);
         };
     </script>
 </body>
