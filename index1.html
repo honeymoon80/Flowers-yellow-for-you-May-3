@@ -9,18 +9,13 @@
     <link rel="stylesheet" href="css/main.css">
     <style>
         .particles {
-            position: fixed;
-            top: 0; left: 0;
+            position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 10;
-            overflow: hidden;
+            pointer-events: none; z-index: 10; overflow: hidden;
         }
         .particle {
-            position: absolute;
-            width: 4px; height: 4px;
-            background: #ffff00;
-            border-radius: 50%;
+            position: absolute; width: 4px; height: 4px;
+            background: #ffff00; border-radius: 50%;
             box-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00;
             animation: fall linear infinite;
         }
@@ -30,25 +25,14 @@
         }
 
         .final-message {
-            position: fixed;
-            top: 12%;
-            left: 50%;
-            transform: translateX(-50%);
-            max-width: 85%;
-            font-size: 2.2rem;
-            line-height: 1.45;
-            color: red;
-            text-shadow: 0 0 25px red, 0 0 55px red;
-            background: rgba(0,0,0,0.75);
-            padding: 25px 30px;
-            border-radius: 20px;
-            opacity: 0;
-            z-index: 30;
-            text-align: center;
+            position: fixed; top: 12%; left: 50%; transform: translateX(-50%);
+            max-width: 85%; font-size: 2.2rem; line-height: 1.45;
+            color: red; text-shadow: 0 0 25px red, 0 0 55px red;
+            background: rgba(0,0,0,0.75); padding: 25px 30px;
+            border-radius: 20px; opacity: 0; z-index: 30; text-align: center;
         }
         .final-message.active {
-            opacity: 1;
-            animation: text-pulse 2.5s infinite alternate;
+            opacity: 1; animation: text-pulse 2.5s infinite alternate;
         }
         @keyframes text-pulse {
             from { text-shadow: 0 0 40px yellow; }
@@ -65,7 +49,7 @@
     <div class="particles" id="particles"></div>
 
     <div class="flowers">
-      <!-- ESTRUCTURA COMPLETA DE FLORES -->
+      <!-- Todas las flores completas -->
       <div class="flower flower--1"><div class="flower__leafs flower__leafs--1"><div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div><div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div></div><div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div><div class="flower__line__leaf flower__line__leaf--5"></div><div class="flower__line__leaf flower__line__leaf--6"></div></div></div>
       <div class="flower flower--2"><div class="flower__leafs flower__leafs--2"><div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div><div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div></div><div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div></div></div>
       <div class="flower flower--3"><div class="flower__leafs flower__leafs--3"><div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div><div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div></div><div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div></div></div>
@@ -90,7 +74,7 @@
     </div>
 
     <audio id="background-music" loop>
-        <source src="her’s - harvey (sped up).m4a" type="audio/mpeg">
+        <source src="audio.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -145,4 +129,4 @@
         }
     </script>
 </body>
-</html>
+                                     </html>
