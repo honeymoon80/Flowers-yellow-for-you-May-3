@@ -25,19 +25,24 @@
         }
 
         .final-message {
-            position: fixed; top: 12%; left: 50%; transform: translateX(-50%);
-            max-width: 85%; font-size: 2.2rem; line-height: 1.45;
+            position: fixed; top: 15%; left: 50%; transform: translateX(-50%);
+            max-width: 88%; font-size: 2.15rem; line-height: 1.45;
             color: red; text-shadow: 0 0 25px red, 0 0 55px red;
-            background: rgba(0,0,0,0.75); padding: 25px 30px;
+            background: rgba(0,0,0,0.78); padding: 28px 35px;
             border-radius: 20px; opacity: 0; z-index: 30; text-align: center;
         }
         .final-message.active {
-            opacity: 1; animation: text-pulse 2.5s infinite alternate;
+            opacity: 1; animation: text-pulse 3s infinite alternate;
         }
         @keyframes text-pulse {
             from { text-shadow: 0 0 40px yellow; }
-            to   { text-shadow: 0 0 80px yellow, 0 0 120px yellow; }
+            to   { text-shadow: 0 0 85px yellow, 0 0 130px yellow; }
         }
+
+        /* Reducir movimiento lateral de las flores */
+        .flower--1 { animation: moving-flower-1 6s linear infinite; }
+        .flower--2 { animation: moving-flower-2 6s linear infinite; }
+        .flower--3 { animation: moving-flower-3 6s linear infinite; }
     </style>
 </head>
 <body class="container">
@@ -49,7 +54,7 @@
     <div class="particles" id="particles"></div>
 
     <div class="flowers">
-      <!-- Todas las flores completas -->
+      <!-- ESTRUCTURA COMPLETA DE FLORES (la misma que tenías) -->
       <div class="flower flower--1"><div class="flower__leafs flower__leafs--1"><div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div><div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div></div><div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div><div class="flower__line__leaf flower__line__leaf--5"></div><div class="flower__line__leaf flower__line__leaf--6"></div></div></div>
       <div class="flower flower--2"><div class="flower__leafs flower__leafs--2"><div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div><div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div></div><div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div></div></div>
       <div class="flower flower--3"><div class="flower__leafs flower__leafs--3"><div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div><div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div></div><div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div></div></div>
@@ -84,8 +89,8 @@
                 document.body.addEventListener('click', () => music.play(), {once: true});
             });
 
-            setTimeout(startParticles, 2000);
-            setTimeout(startEffectsSequence, 6500);
+            setTimeout(startParticles, 1500);
+            setTimeout(startEffectsSequence, 5500);   // Se inicia antes para que el texto se escriba mientras crecen las flores
         });
 
         function startParticles() {
@@ -94,10 +99,10 @@
                 const p = document.createElement('div');
                 p.className = 'particle';
                 p.style.left = Math.random() * 100 + '%';
-                p.style.animationDuration = (Math.random() * 9 + 6) + 's';
+                p.style.animationDuration = (Math.random() * 10 + 7) + 's';
                 cont.appendChild(p);
-                setTimeout(() => p.remove(), 18000);
-            }, 280);
+                setTimeout(() => p.remove(), 20000);
+            }, 250);
         }
 
         function startEffectsSequence() {
@@ -115,18 +120,18 @@
                 if (i < message.length) {
                     auraText.innerHTML = message.substring(0, i+1) + cursor.outerHTML;
                     i++;
-                    setTimeout(type, 75);
+                    setTimeout(type, 70);   // Velocidad de escritura más natural
                 } else {
                     cursor.remove();
                     setTimeout(() => {
                         auraText.style.opacity = '0';
                         finalMessage.textContent = message;
                         finalMessage.classList.add('active');
-                    }, 1400);
+                    }, 1200);
                 }
             }
             type();
         }
     </script>
 </body>
-                                     </html>
+    </html>
